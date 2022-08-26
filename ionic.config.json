@@ -1,0 +1,7 @@
+{
+  "name": "maharaja-banquey",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
