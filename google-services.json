@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "950188915523",
+    "project_id": "maharaja-banquet",
+    "storage_bucket": "maharaja-banquet.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:950188915523:android:6f4f61904edff3650a4df6",
+        "android_client_info": {
+          "package_name": "io.com.maharaja"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "950188915523-s0k8oe6l8obj2gfla4q6bmceskcb8mto.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVYUEq9F2nAPxrsjLKXxpcoXbgmhY7Ux4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "950188915523-s0k8oe6l8obj2gfla4q6bmceskcb8mto.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

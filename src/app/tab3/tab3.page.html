@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 3
+      Third Party Contact
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -13,5 +13,31 @@
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+
+  
+  <ion-content [fullscreen]="true">
+    <ng-container *ngIf="contactList && contactList.length > 0">
+        
+          <ion-card  *ngFor="let contact of contactList" >
+            <ion-card-header>
+              <ion-card-subtitle>Contact Type</ion-card-subtitle>
+              <ion-card-title>
+                <ion-label >{{contact.type | date}}</ion-label>
+              </ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-card-subtitle>NAME: {{contact.firstName}} {{contact.lastName}}</ion-card-subtitle>
+            </ion-card-content>
+          </ion-card>
+          <!-- <ion-label (click)="presentModal(booking)">{{booking.bookingDate | date}}</ion-label> -->
+        
+    </ng-container>
+    
+    <ng-container *ngIf="contactList && contactList.length === 0">
+      <div id="container">
+        <p>No Contact Found</p>
+      </div>
+    </ng-container>
+  </ion-content>
+  
 </ion-content>

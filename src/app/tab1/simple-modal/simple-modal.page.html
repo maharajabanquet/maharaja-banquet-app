@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-title>{{booking.status | uppercase}} </ion-title>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-toggle (ionChange)="onToogle($event, booking)" slot="end" name="apple" color="primary" [checked]=ChangeToogle(booking.status)></ion-toggle>
+
+    </ion-buttons>
+  </ion-toolbar>
+  <!-- <ion-toolbar>
+   
+    
+  </ion-toolbar> -->
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label>
+        <h2>Booked By</h2>
+        <p>{{booking.firstName}} {{booking.lastName}}</p>
+      </ion-label>
+      <ion-label>
+        <h2>Booking Date</h2>
+        <p>{{booking.bookingDate | date}}</p>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        <h2>Address</h2>
+        <p>{{booking.address}}</p>
+      </ion-label>
+    </ion-item>
+    
+  </ion-list>
+  <ion-accordion-group *ngIf="booking.facilities && booking.facilities.length > 0">
+    <ion-accordion>
+      <ion-item slot="header">
+        <ion-label>Facilites</ion-label>
+      </ion-item>
+
+      <ion-list slot="content">
+        <ion-item *ngFor="let facility of booking.facilities">
+          <ion-label>{{facility.label}} ({{facility.price}})</ion-label>
+        </ion-item>
+        
+      </ion-list>
+    </ion-accordion>
+
+  </ion-accordion-group>
+  <ion-item>
+    <ion-label>
+      <h2>Contact</h2>
+      <p>{{booking.phoneNumber}}</p>
+    </ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-label>
+      <h2>Balanced Amount</h2>
+      <p>{{booking.balancedAmount}}</p>
+    </ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-label>
+      <h2>Final Amount</h2>
+      <p>{{booking.finalAmount}}</p>
+    </ion-label>
+  </ion-item>
+</ion-content>
