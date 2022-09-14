@@ -22,7 +22,7 @@ export class Tab1Page implements ViewWillEnter {
   }
   
   ionViewWillEnter() {
-    // this.getBooking();
+    this.getBooking();
   }
 
 
