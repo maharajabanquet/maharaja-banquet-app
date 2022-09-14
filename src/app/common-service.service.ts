@@ -1,12 +1,13 @@
 import { ApiServiceService } from './api-service.service';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommonServiceService {
-
+  isAdmin = new BehaviorSubject(false);
   constructor(
     private apiService: ApiServiceService
   ) { }
@@ -38,5 +39,14 @@ export class CommonServiceService {
     
   }
 
+  submitTask(payload) {
+    const URL = `${environment.host}/api/v1/task/add-task`;
+    return this.apiService.post(URL, payload);
+  }
 
+
+  getTask() {
+    const URL = `${environment.host}/api/v1/task/get-task`;
+    return this.apiService.get(URL);
+  }
 }

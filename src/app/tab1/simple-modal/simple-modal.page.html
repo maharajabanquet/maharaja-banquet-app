@@ -3,10 +3,12 @@
     <ion-buttons slot="start">
       <ion-title>{{booking.status | uppercase}} </ion-title>
     </ion-buttons>
-    <ion-buttons slot="end">
-      <ion-toggle (ionChange)="onToogle($event, booking)" slot="end" name="apple" color="primary" [checked]=ChangeToogle(booking.status)></ion-toggle>
-
-    </ion-buttons>
+    <ng-container *ngIf="isAdmin">
+      <ion-buttons slot="end">
+        <ion-toggle (ionChange)="onToogle($event, booking)" slot="end" name="apple" color="primary" [checked]=ChangeToogle(booking.status)></ion-toggle>
+      </ion-buttons>
+    </ng-container>
+  
   </ion-toolbar>
   <!-- <ion-toolbar>
    

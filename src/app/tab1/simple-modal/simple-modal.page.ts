@@ -8,13 +8,18 @@ import { CommonServiceService } from './../../common-service.service';
 })
 export class SimpleModalPage implements OnInit {
 @Input() booking : any;
+isAdmin: boolean;
   constructor(
     private commonService: CommonServiceService,
   ) { }
 
   ngOnInit() {
     console.log('From Modal', this.booking);
-    
+    this.commonService.isAdmin.subscribe(isAdmin => {
+      
+      this.isAdmin = isAdmin;
+      console.log("IS ADMIN: ", this.isAdmin);
+    })
   }
 
   ChangeToogle(value) {

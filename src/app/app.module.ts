@@ -1,3 +1,4 @@
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
@@ -15,7 +16,14 @@ import { FCM } from '@awesome-cordova-plugins/fcm/ngx';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule ],
+  imports: [
+    BrowserModule, 
+    IonicModule.forRoot(), 
+    AppRoutingModule, 
+    HttpClientModule,
+    BrowserAnimationsModule
+  
+  ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, FirebaseX, FingerprintAIO,  UniqueDeviceID,FCM,
     AndroidPermissions,],
   bootstrap: [AppComponent],

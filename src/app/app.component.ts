@@ -17,6 +17,7 @@ export class AppComponent {
   adminName: any;
   isAuthenticated: boolean;
   uniqueId: any;
+  isAdmin: boolean;
   constructor(
     private firebaseX: FirebaseX, 
     private plt: Platform, 
@@ -73,7 +74,9 @@ export class AppComponent {
       this.firebaseX.getToken()
     .then(token => {
       this.commonService.addToken({device_id: this.uniqueId, fcm_token: token}).subscribe((res: any) => {
-        if(res && res.admin) {
+        if(res && res.status) {
+            this.isAdmin = res && res.docs && res.docs.admin;
+            this.commonService.isAdmin.next(this.isAdmin);
           this.isAuthenticated = true;
         } else {
           navigator['app'].exitApp();
