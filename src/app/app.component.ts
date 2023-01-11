@@ -28,11 +28,13 @@ export class AppComponent {
     private router: Router
     )
      { 
-    this.plt.ready().then((readySource) => {
-      this.getUniqueDeviceID();
-      this.showFingerprintAuthDlg();
+    // this.plt.ready().then((readySource) => {
+    //   this.getUniqueDeviceID();
+    //   this.showFingerprintAuthDlg();
 
-    })
+    // })
+    this.isAuthenticated = true;
+    this.isAdmin = true;
 
     this.fcm.onNotification().subscribe(data => {
       if(data.wasTapped){

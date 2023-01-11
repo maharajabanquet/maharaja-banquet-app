@@ -4,10 +4,10 @@
 const LOCAL_PORT = '3000';
 const LOCAL_HOST = `http://localhost:${LOCAL_PORT}`;
 const LOCAL_MACHINE = `http://192.168.1.14:${LOCAL_PORT}`;
-const HEROKU_UAT = 'https://maharajabanquet.herokuapp.com';
+const PRODUCTION = 'http://maharajaraxaul.com';
 export const environment = {
   production: false,
-  host: LOCAL_MACHINE
+  host: PRODUCTION
 };
 
 /*

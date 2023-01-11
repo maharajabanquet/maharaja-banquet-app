@@ -17,7 +17,7 @@ isAdmin: boolean;
     console.log('From Modal', this.booking);
     this.commonService.isAdmin.subscribe(isAdmin => {
       
-      this.isAdmin = isAdmin;
+      this.isAdmin = true;
       console.log("IS ADMIN: ", this.isAdmin);
     })
   }
