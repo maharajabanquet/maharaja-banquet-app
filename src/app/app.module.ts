@@ -13,6 +13,8 @@ import { UniqueDeviceID } from '@ionic-native/unique-device-id/ngx';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 import { HttpClientModule } from  '@angular/common/http';
 import { FCM } from '@awesome-cordova-plugins/fcm/ngx';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,7 +27,7 @@ import { FCM } from '@awesome-cordova-plugins/fcm/ngx';
   
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, FirebaseX, FingerprintAIO,  UniqueDeviceID,FCM,
-    AndroidPermissions,],
+    AndroidPermissions,SplashScreen],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

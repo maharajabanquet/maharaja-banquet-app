@@ -8,6 +8,8 @@ import { ExploreContainerComponentModule } from '../explore-container/explore-co
 
 import { Tab3PageRoutingModule } from './tab3-routing.module';
 import { CalendarPageModule } from '../calendar/calendar.module';
+import { BookingCalendarPage } from '../booking-calendar/booking-calendar.page';
+import { BookingCalendarPageModule } from '../booking-calendar/booking-calendar.module';
 
 @NgModule({
   imports: [
@@ -18,6 +20,7 @@ import { CalendarPageModule } from '../calendar/calendar.module';
     RouterModule.forChild([{ path: '', component: Tab3Page }]),
     Tab3PageRoutingModule,
     CalendarPageModule,
+    BookingCalendarPageModule
     
   ],
   declarations: [Tab3Page]

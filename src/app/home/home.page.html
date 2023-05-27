@@ -1,0 +1,64 @@
+
+
+<ion-header class="header" [translucent]="true">
+  <ion-toolbar color="secondary">
+    <ion-title text-left>
+      <img alt="logo" height="40" float-left  src="../../assets/images/icon.png" >  Maharaja Banquet
+     </ion-title>
+     <ion-buttons slot="end" (click)="exit()">
+      <ion-button>CLOSE </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+  <ion-content >
+    <ion-card *ngIf="userBookingData">
+      <ion-item>
+        <ion-avatar slot="start">
+          <img src="../../assets/images/user.png">
+        </ion-avatar>
+        <ion-label>
+          <h3>{{userBookingData.firstName}} {{userBookingData.lastName}}</h3>
+          <p>{{userBookingData.bookingDate|date}}</p>
+        </ion-label>
+      </ion-item>
+      <ion-card-header>
+        <ion-card-title>{{userBookingData.requirements}} function</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p ><ion-icon style="font-size: 30px;" name="notifications-circle-outline"></ion-icon><label style="color:#fd501c;font-weight: bold;">{{userLogin.notification}}</label></p>
+      </ion-card-content>
+      <ion-footer>
+        <ion-row>
+          <ion-col center text-center>
+            <button style="color:green">
+              ₹ {{userBookingData.finalAmount}}
+              <div style="font-size:13px">Booked Amount</div>
+            </button>
+          </ion-col>
+          <ion-col center text-center>
+            <button style="color:purple">
+              ₹ {{userBookingData.BookingAmount}}
+              <div style="font-size:13px">Advance Paid</div>
+            </button>
+          </ion-col>
+          <ion-col center text-center>
+            <button style="color:red">
+              ₹ {{userBookingData.balancedAmount}}
+              <div style="font-size:13px">Due Amount</div>
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-footer>
+    </ion-card>
+    <!-- <ion-card color="light">
+      <ion-card-header>
+        <ion-card-title><span style="font-weight: bold;color:#7e6130">Booking Date</span> <br><span style="color:#7e6130a1">{{userLogin.dateOfBooking}}</span></ion-card-title>
+      </ion-card-header>    
+    </ion-card> -->
+    <ion-card style="background-color:white" *ngFor="let list of getMessages()"   [routerLink]="'/category/' + list.id" >
+      <img class="card-image" [src]="list.img">
+      <ion-card-header>
+        <ion-card-title style="color: #7e6130;">{{list.category}}</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+  </ion-content>

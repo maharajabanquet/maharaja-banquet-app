@@ -6,7 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['tabs.page.scss']
 })
 export class TabsPage {
-
-  constructor() {}
+  isAdmin = false;
+  userLogin: any;
+  constructor() {
+    this.userLogin = JSON.parse(localStorage.getItem('user'))
+    this.isAdmin = this.userLogin && this.userLogin.isAdmin
+    console.log(this.isAdmin);
+    
+  }
 
 }

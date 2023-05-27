@@ -7,6 +7,7 @@ import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 import { CommonServiceService } from './common-service.service';
 import { FCM } from '@awesome-cordova-plugins/fcm/ngx';
 import { Router } from '@angular/router';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 
 @Component({
   selector: 'app-root',
@@ -18,6 +19,9 @@ export class AppComponent {
   isAuthenticated: boolean;
   uniqueId: any;
   isAdmin: boolean;
+  userLogin: any;
+  isOnline: boolean;
+  onlineOffline: boolean = navigator.onLine;
   constructor(
     private firebaseX: FirebaseX, 
     private plt: Platform, 
@@ -25,14 +29,29 @@ export class AppComponent {
     private uniqueDeviceID: UniqueDeviceID,
     private commonService: CommonServiceService,
     private fcm: FCM,
-    private router: Router
+    private router: Router,
+    private splashScreen: SplashScreen
     )
      { 
+      this.plt.backButton.subscribe( () => {
+        navigator['app'].exitApp();
+        })
+      if(!this.onlineOffline) {
+        alert('You are offline, Please check your connection and restart app')
+      }
+      this.userLogin = JSON.parse(localStorage.getItem('user'))
     // this.plt.ready().then((readySource) => {
     //   this.getUniqueDeviceID();
     //   this.showFingerprintAuthDlg();
 
     // })
+    console.log('USER :::>', this.userLogin);
+
+    if(this.userLogin === null) {
+      console.log('USER :::>', this.userLogin);
+      
+      this.router.navigate(['/login'])
+    } 
     this.isAuthenticated = true;
     this.isAdmin = true;
 
@@ -105,5 +124,7 @@ export class AppComponent {
         console.log(error);
       });
   }
+
+  
 
 }

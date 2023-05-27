@@ -1,0 +1,18 @@
+
+
+<ion-content>
+	<form (ngSubmit)="login()" [formGroup]="credentials">
+		<div class="input-group">
+			<ion-item>
+				<ion-input type="text" placeholder="Enter Your Mobile Number" formControlName="mobile"></ion-input>
+			</ion-item>
+
+			<ion-item>
+				<ion-input type="password" placeholder="Enter Your Password" formControlName="password"></ion-input>
+			</ion-item>
+		
+		</div>
+
+		<ion-button type="submit" expand="block" [disabled]="!credentials.valid">Log in</ion-button>
+	</form>
+</ion-content>

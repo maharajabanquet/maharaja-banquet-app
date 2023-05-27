@@ -1,5 +1,7 @@
-<ng-container *ngIf="isAuthenticated">
-  <ion-app>
-    <ion-router-outlet></ion-router-outlet>
-  </ion-app>
+<ng-container *ngIf="onlineOffline">
+  <ng-container *ngIf="isAuthenticated">
+    <ion-app>
+      <ion-router-outlet></ion-router-outlet>
+    </ion-app>
+  </ng-container>
 </ng-container>

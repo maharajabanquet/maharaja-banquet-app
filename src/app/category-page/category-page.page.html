@@ -1,0 +1,37 @@
+
+
+  <ion-header class="header" [translucent]="true">
+    <ion-toolbar color="secondary">
+      <ion-title>{{item.category}}</ion-title>
+      <ion-buttons slot="start" (click)="goBack()">
+        <ion-button> <ion-icon name="arrow-back-outline"></ion-icon>  </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+    
+  </ion-header>
+<ion-content>
+<ion-item  style="background-color:white" *ngFor="let list of item.categoryList, let i = index" >
+  <ion-label>{{list.itemName}}</ion-label>
+  <ion-select  placeholder="Make a Selection" (ionChange)="onItemSelect($event, list, i )"  >
+    <ion-select-option *ngFor="let qnt of getQuantityRange(list.quantity)"  [value]="qnt+1">{{qnt+1}}</ion-select-option>
+   
+  </ion-select>
+  
+</ion-item>
+<ion-card style="background-color:white" *ngIf="userSelectedItem && userSelectedItem.categoryList">
+  <ion-card-header>
+    <ion-card-title >My Order</ion-card-title>
+    <ion-card-subtitle></ion-card-subtitle>
+  </ion-card-header>
+  <ion-card-content >
+    <ion-list *ngFor="let list of userSelectedItem.categoryList">
+      <ion-item  >
+        <ion-thumbnail slot="start">
+          <ion-icon style="font-size: 50px;" name="cart-outline"></ion-icon>
+        </ion-thumbnail>
+        <ion-label >{{list.itemName}}: {{list.orderQuant}} </ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-card-content>
+</ion-card>
+</ion-content>

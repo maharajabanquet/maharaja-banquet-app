@@ -1,20 +1,27 @@
 <ion-tabs>
-
-  <ion-tab-bar slot="bottom">
-    <ion-tab-button tab="tab1">
-      <ion-icon name="timer-outline"></ion-icon>
-      <ion-label>Pending</ion-label>
-    </ion-tab-button>
-
-    <ion-tab-button tab="tab2">
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="tab1">
+        <ion-icon name="timer-outline"></ion-icon>
+        <ion-label>Pending</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="tab2">
+        <ion-icon name="checkmark-done-circle-outline"></ion-icon>
+        <ion-label>Approved</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="tab3">
+        <ion-icon name="people-outline"></ion-icon>
+        <ion-label>Management</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  <!-- <ng-container *ngIf="!isAdmin">
+    <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="tab4">
       <ion-icon name="checkmark-done-circle-outline"></ion-icon>
-      <ion-label>Approved</ion-label>
+      <ion-label>Services</ion-label>
     </ion-tab-button>
-
-    <ion-tab-button tab="tab3">
-      <ion-icon name="people-outline"></ion-icon>
-      <ion-label>Management</ion-label>
-    </ion-tab-button>
-  </ion-tab-bar>
+    </ion-tab-bar>
+  </ng-container> -->
 
 </ion-tabs>

@@ -18,4 +18,12 @@ export class ApiServiceService {
   post(url, body?) {
     return this.http.post(url, body);
   }  
+  postPdf(url: any, body: any) {
+
+    const httpOptions = {
+      responseType: 'blob' as 'json'
+    };
+  
+    return this.http.post(url,body, httpOptions);
+  }
 }

@@ -4,8 +4,8 @@
   </ion-toolbar>
   <ion-toolbar>
     <ion-segment [(ngModel)]="type">
-      <ion-segment-button value="Employee">
-        <ion-label>Employee</ion-label>
+      <ion-segment-button value="Booking Calendar">
+        <ion-label>Booking Calendar</ion-label>
       </ion-segment-button>
       <ion-segment-button value="Cleaning">
         <ion-label>Cleaning</ion-label>
@@ -15,9 +15,11 @@
 </ion-header>
 <ion-content [fullscreen]="true">
   <ng-container [ngSwitch]="type">
-  
     <ng-container *ngSwitchCase="'Cleaning'">
       <app-calendar></app-calendar>
+    </ng-container>
+    <ng-container *ngSwitchCase="'Booking Calendar'">
+      <public-calendar></public-calendar>
     </ng-container>
   </ng-container>
 </ion-content>
