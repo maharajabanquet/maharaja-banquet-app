@@ -14,6 +14,7 @@ import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 import { HttpClientModule } from  '@angular/common/http';
 import { FCM } from '@awesome-cordova-plugins/fcm/ngx';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { Tabs4PageModule } from './tabs4/tabs4.module';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
     IonicModule.forRoot(), 
     AppRoutingModule, 
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    Tabs4PageModule
   
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, FirebaseX, FingerprintAIO,  UniqueDeviceID,FCM,

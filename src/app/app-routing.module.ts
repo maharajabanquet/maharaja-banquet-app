@@ -7,7 +7,7 @@ const routes: Routes = [
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
   },
   {
-    path: 'calendar',
+    path: 'calendar/:tab',
     loadChildren: () => import('./calendar/calendar.module').then( m => m.CalendarPageModule)
   },
   {
@@ -19,16 +19,22 @@ const routes: Routes = [
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
   {
-    path: 'category/:id',
+    path: 'category',
     loadChildren: () => import('./category-page/category-page.module').then( m => m.CategoryPagePageModule)
-  },  {
+  },
+  {
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
   {
-    path: 'booking-calendar',
+    path: 'booking-calendar/:id',
     loadChildren: () => import('./booking-calendar/booking-calendar.module').then( m => m.BookingCalendarPageModule)
+  },
+  {
+    path: 'media',
+    loadChildren: () => import('./media/media.module').then( m => m.MediaPageModule)
   }
+
 
 
 ];

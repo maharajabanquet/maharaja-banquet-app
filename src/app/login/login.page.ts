@@ -34,6 +34,7 @@ export class LoginPage implements OnInit {
 			mobile: ['', [Validators.required]],
 			password: ['', [Validators.required]]
 		});
+		localStorage.clear();
 	}
 
 	getUniqueDeviceID() {
@@ -57,7 +58,7 @@ export class LoginPage implements OnInit {
 		this.firebaseX.getToken()
 		.then(token => {
 			const user = JSON.parse(localStorage.getItem('user'))
-		  this.commonServices.addToken({device_id: this.uniqueId, fcm_token: token, phoneNumber: user.mobile}).subscribe((res: any) => {
+		  this.commonServices.addToken({device_id: this.uniqueId, fcm_token: token, phoneNumber: user.mobile, isAdmin: user.isAdmin}).subscribe((res: any) => {
 		  })
 		}) // save the token server-side and use it to push notifications to this device
 		.catch(error => console.error('Error getting token', error));
@@ -95,5 +96,10 @@ export class LoginPage implements OnInit {
 
 	get password() {
 		return this.credentials.get('password');
+	}
+
+	skip() {
+		localStorage.setItem('userType', 'guest')
+		this.router.navigate(['/media'])
 	}
 }

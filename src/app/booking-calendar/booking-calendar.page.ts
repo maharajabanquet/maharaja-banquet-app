@@ -36,7 +36,8 @@ import {
 import {
   EventColor
 } from 'calendar-utils';
-
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 const colors: Record < string, EventColor > = {
   red: {
     primary: '#ad2121',
@@ -150,9 +151,20 @@ export class BookingCalendarPage implements OnInit {
   events: CalendarEvent[] = [];
 
   activeDayIsOpen: boolean = false;
+  userLogin: any;
+  showHeader: any;
 
-  constructor(private bookingService: BookingServiceService) {
-
+  constructor(private bookingService: BookingServiceService, private activateRoute: ActivatedRoute,private location: Location) {
+    this.userLogin = JSON.parse(localStorage.getItem('user'))
+    console.log(this.userLogin);
+    
+    this.activateRoute.params.subscribe(resp => {
+      this.showHeader = resp && resp.id
+      
+    })
+  }
+  back() {
+    this.location.back();
   }
 
   ngOnInit(): void {

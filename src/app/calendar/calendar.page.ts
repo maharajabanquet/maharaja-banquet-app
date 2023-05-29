@@ -29,6 +29,8 @@ import { IonModal, LoadingController, ToastController, ViewWillEnter } from '@io
 import { OverlayEventDetail } from '@ionic/core/components';
 import { Camera, CameraOptions } from '@awesome-cordova-plugins/camera/ngx';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 const colors: Record<string, EventColor> = {
   red: {
@@ -99,16 +101,26 @@ export class CalendarPage implements OnInit, ViewWillEnter {
 
   activeDayIsOpen: boolean = false;
   disableButton: boolean;
-  
+  showHeader: any;
+  userLogin: any;
   constructor(
     private camera: Camera,
     private fb: FormBuilder,
     private commmonService: CommonServiceService,
     private loadingCtrl: LoadingController,
-    private toastr: ToastController
-  ) {}
+    private toastr: ToastController,
+    private activateRoute: ActivatedRoute,
+    private location: Location
+    ) {}
 
   ngOnInit() {
+    this.userLogin = JSON.parse(localStorage.getItem('user'))
+    console.log(this.userLogin);
+    
+    this.activateRoute.params.subscribe(resp => {
+      this.showHeader = resp && resp.tab
+      
+    })
     this.taskForm = this.fb.group({
       date: ['', [Validators.required]],
       title: ['', [Validators.required]],
@@ -118,6 +130,10 @@ export class CalendarPage implements OnInit, ViewWillEnter {
     this.getTaskList();
   }
   ionViewWillEnter() {
+  }
+
+  back() {
+    this.location.back();
   }
 
   async getTaskList() {

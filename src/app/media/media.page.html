@@ -1,0 +1,63 @@
+<ion-header class="header" [translucent]="true">
+  <ion-toolbar color="secondary">
+    <ion-title text-left>
+      <img alt="logo" height="40" float-left src="../../assets/images/icon.png"> Maharaja Banquet
+    </ion-title>
+    <ion-buttons slot="end" (click)="exit()">
+      <ion-button>Close </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end" (click)="login()">
+      <ion-button>Login </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-header>
+  <ion-toolbar>
+    <ion-segment [(ngModel)]="type">
+      <ion-segment-button value="photos">
+        <ion-label>Photos</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="videos">
+        <ion-label>Videos</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="services">
+        <ion-label>Our Services</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ng-container [ngSwitch]="type">
+    <ng-container [ngSwitch]="type">
+      <ng-container *ngSwitchCase="'photos'">
+        <ion-grid>
+          <ion-row>
+            <ion-col sizeLg="4" sizeMd="4" sizeXs="6" *ngFor="let image of mediaList">
+              <div (click)="presentModal  (image.mediaSource)" class="img-wrapper" [style.background-image]="'url('+image.mediaSource+')'">
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="'videos'">
+      <iframe [width]="innerWidth" height="512" [src]=yotubeVidId title="Maharaja Banquet Branding Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </ng-container>
+    <ng-container *ngSwitchCase="'services'">
+      <ion-item *ngFor="let list of serviceList">
+        <ion-icon name="star" slot="start"></ion-icon>
+        <ion-label>{{list.itemName}}</ion-label>
+      <p class="numberCircle"> <ion-chip> {{list.quantity}}</ion-chip>
+       </p>
+      </ion-item>
+    </ng-container>
+    <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+      <ion-fab-button (click)="showCal()" color="secondary" >
+        <ion-icon name="calendar-number-outline"></ion-icon>
+      </ion-fab-button>
+     
+    </ion-fab>
+  </ng-container>
+</ion-content>

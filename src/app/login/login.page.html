@@ -4,7 +4,8 @@
 	<form (ngSubmit)="login()" [formGroup]="credentials">
 		<div class="input-group">
 			<ion-item>
-				<ion-input type="text" placeholder="Enter Your Mobile Number" formControlName="mobile"></ion-input>
+
+				<ion-input  type="text" placeholder="Enter Your Mobile Number" formControlName="mobile"></ion-input>
 			</ion-item>
 
 			<ion-item>
@@ -14,5 +15,10 @@
 		</div>
 
 		<ion-button type="submit" expand="block" [disabled]="!credentials.valid">Log in</ion-button>
+		<p style="text-align: center;">
+			<ion-button (click)="skip()">SKIP</ion-button>
+
+		</p>
+
 	</form>
 </ion-content>

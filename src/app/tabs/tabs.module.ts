@@ -14,6 +14,7 @@ import { CalendarPageModule } from './../calendar/calendar.module';
     TabsPageRoutingModule,
     CalendarPageModule
   ],
-  declarations: [TabsPage]
+  declarations: [TabsPage],
+  exports: [TabsPage]
 })
 export class TabsPageModule {}

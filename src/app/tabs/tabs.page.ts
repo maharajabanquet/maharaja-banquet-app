@@ -11,7 +11,7 @@ export class TabsPage {
   constructor() {
     this.userLogin = JSON.parse(localStorage.getItem('user'))
     this.isAdmin = this.userLogin && this.userLogin.isAdmin
-    console.log(this.isAdmin);
+    console.log('LALALLA');
     
   }
 

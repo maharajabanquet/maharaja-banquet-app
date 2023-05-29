@@ -22,6 +22,7 @@ export class AppComponent {
   userLogin: any;
   isOnline: boolean;
   onlineOffline: boolean = navigator.onLine;
+  guestUser: any;
   constructor(
     private firebaseX: FirebaseX, 
     private plt: Platform, 
@@ -33,13 +34,25 @@ export class AppComponent {
     private splashScreen: SplashScreen
     )
      { 
-      this.plt.backButton.subscribe( () => {
-        navigator['app'].exitApp();
-        })
       if(!this.onlineOffline) {
         alert('You are offline, Please check your connection and restart app')
       }
       this.userLogin = JSON.parse(localStorage.getItem('user'))
+      this.guestUser = localStorage.getItem('userType')
+
+      if(!this.userLogin) {
+        this.router.navigate(['/media'])
+
+      }
+      if(this.userLogin && this.userLogin.isAdmin === false) {
+        console.log('check', this.userLogin.isAdmin);
+        
+        this.router.navigate(['/home'])
+      } else {
+        this.router.navigate(['/tabs'])
+      }
+
+     
     // this.plt.ready().then((readySource) => {
     //   this.getUniqueDeviceID();
     //   this.showFingerprintAuthDlg();
@@ -50,15 +63,19 @@ export class AppComponent {
     if(this.userLogin === null) {
       console.log('USER :::>', this.userLogin);
       
-      this.router.navigate(['/login'])
+      this.router.navigate(['/media'])
     } 
+
+    if(this.guestUser === 'guest') {
+      this.router.navigate(['/media'])
+    }
     this.isAuthenticated = true;
     this.isAdmin = true;
 
     this.fcm.onNotification().subscribe(data => {
       if(data.wasTapped){
         console.log("Received in background");
-        this.router.navigate(['tab1'])
+        this.router.navigate(['/tabs'])
 
       } else {
         console.log("Received in foreground");
@@ -99,9 +116,7 @@ export class AppComponent {
             this.isAdmin = res && res.docs && res.docs.admin;
             this.commonService.isAdmin.next(this.isAdmin);
           this.isAuthenticated = true;
-        } else {
-          navigator['app'].exitApp();
-        }
+        } 
       })
     }) // save the token server-side and use it to push notifications to this device
     .catch(error => console.error('Error getting token', error));

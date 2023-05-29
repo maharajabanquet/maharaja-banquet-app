@@ -39,4 +39,14 @@ export class CommonService {
     const url = `${environment.host}/api/v1/booking/get-user-booking?mobile=${mobile}`;
     return this.apiService.get(url);
   }
+
+  getAllMedia(type: any) {
+    const url = `${environment.host}/api/v1/media/get-all-media?type=all`;
+    return this.apiService.get(url);
+  }
+
+  getAllServices() {
+    const url = `${environment.host}/api/v1/service/service-list`;
+    return this.apiService.get(url);
+  }
 }

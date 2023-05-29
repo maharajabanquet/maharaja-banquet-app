@@ -1,3 +1,14 @@
+<ion-header class="header" *ngIf="showHeader === 'false'"  [translucent]="true">
+  <ion-toolbar color="secondary">
+    <ion-title text-left>
+      <img alt="logo" height="40" float-left src="../../assets/images/icon.png"> Maharaja Banquet
+    </ion-title>
+    <ion-buttons slot="end" (click)="back()">
+      <ion-button>Back </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
 <ng-container *ngIf="isready">
   <ng-container >
     <br><br><div class="row text-center">
