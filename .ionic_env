@@ -1,0 +1,14 @@
+#user_env
+path: C:\gradle-8.1.1\bin
+
+#SYS ENV
+ANDROID_HOME: C:\Android-SDK
+JAVA_HOME: 
+C:\Program Files\Java\jdk1.8.0_202
+ANDROID_HOME
+C:\Android-SDK
+
+#path:
+%Android-SDK%\tools
+C:\Android-SDK\platform-tools
+C:\Android-SDK\build-tools
