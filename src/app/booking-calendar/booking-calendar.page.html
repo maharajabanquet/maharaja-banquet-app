@@ -10,7 +10,7 @@
 </ion-header>
 
 <ng-container *ngIf="isready">
-  <ng-container >
+  <ng-container style="overflow: auto;">
     <br><br><div class="row text-center">
       <div class="col-md-4">
         <div class="btn-group">
@@ -73,7 +73,7 @@
       <br>
     </div>
     <br />
-    <div [ngSwitch]="view">
+    <div class="scroll" [ngSwitch]="view">
       <mwl-calendar-month-view
         *ngSwitchCase="CalendarView.Month"
         [viewDate]="viewDate"

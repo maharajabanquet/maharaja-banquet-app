@@ -60,7 +60,7 @@
     </div>
   </div>
   <br />
-  <div [ngSwitch]="view">
+  <div [ngSwitch]="view" style="overflow: auto;">
     <mwl-calendar-month-view
       *ngSwitchCase="CalendarView.Month"
       [viewDate]="viewDate"

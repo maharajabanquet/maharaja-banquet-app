@@ -38,6 +38,7 @@ import {
 } from 'calendar-utils';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { Platform } from '@ionic/angular';
 const colors: Record < string, EventColor > = {
   red: {
     primary: '#ad2121',
@@ -65,6 +66,9 @@ const colors: Record < string, EventColor > = {
   // styleUrls: ['./public-calendar.component.css'],
   styles: [
     `
+    .scroll {
+      overflow: auto;
+    }
     .lagan {
       height: 15px;
       width: 15px;
@@ -83,6 +87,7 @@ const colors: Record < string, EventColor > = {
     .cal-month-view .cal-event-title {
     cursor: pointer;
     font-weight: bold;
+
 }
       .my-custom-class span {
         color: #CFA240;
@@ -154,7 +159,7 @@ export class BookingCalendarPage implements OnInit {
   userLogin: any;
   showHeader: any;
 
-  constructor(private bookingService: BookingServiceService, private activateRoute: ActivatedRoute,private location: Location) {
+  constructor(private bookingService: BookingServiceService, private activateRoute: ActivatedRoute,private location: Location, private platform: Platform) {
     this.userLogin = JSON.parse(localStorage.getItem('user'))
     console.log(this.userLogin);
     
@@ -162,6 +167,10 @@ export class BookingCalendarPage implements OnInit {
       this.showHeader = resp && resp.id
       
     })
+    this.platform.ready().then(() => {
+      document.body.setAttribute('data-theme', 'light');
+      document.body.classList.toggle('dark', false);
+    });
   }
   back() {
     this.location.back();
