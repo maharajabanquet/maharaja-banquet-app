@@ -7,7 +7,11 @@ const routes: Routes = [
   {
     path: '',
     component: BookingCalendarPage
+  },  {
+    path: 'booking-modal',
+    loadChildren: () => import('./booking-modal/booking-modal.module').then( m => m.BookingModalPageModule)
   }
+
 ];
 
 @NgModule({

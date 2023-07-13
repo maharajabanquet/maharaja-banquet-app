@@ -1,0 +1,40 @@
+<div class="ion-page">
+  <ion-header>
+    <ion-toolbar color="secondary">
+      <ion-progress-bar *ngIf="isProgress" type="indeterminate"></ion-progress-bar>
+      <ion-title style="font-weight: bold;">Booking for {{date|date}}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">
+    <div [formGroup]="bookingForm">
+    <ion-item>
+      <ion-label>Full Name</ion-label>
+      <ion-input label="Enter your name" formControlName="customerName" placeholder="Enter Your Name"></ion-input>
+    </ion-item>
+    <ion-label color="danger">{{error.customerName}}</ion-label>
+
+    <ion-item>
+      <ion-label>Phone Number</ion-label>
+      <ion-input type="number" label="Enter your Phone Number" placeholder="+91.." formControlName="mobile"></ion-input>
+    </ion-item>
+    <ion-label color="danger">{{error.mobile}}</ion-label>
+    <ion-item>
+      <ion-label>Address</ion-label>
+      <ion-input label="Enter your Address" formControlName="address" placeholder="Enter your Address"></ion-input>
+    </ion-item>
+    <ion-label color="danger">{{error.address}}</ion-label>
+      <ion-list>
+        <ion-item>
+          <ion-select formControlName="requirement" aria-label="requirement" interface="action-sheet" placeholder="Your Requirement">
+            <ion-select-option value="Wedding">Wedding</ion-select-option>
+            <ion-select-option value="Engagement">Engagement</ion-select-option>
+            <ion-select-option value="Reception">Reception</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-label color="danger">{{error.requirement}}</ion-label>
+      </ion-list>
+    </div>
+
+    <ion-button (click)="submit()" expand="block" color="secondary">Submit</ion-button>
+  </ion-content>
+</div>

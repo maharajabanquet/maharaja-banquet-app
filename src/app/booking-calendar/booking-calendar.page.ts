@@ -38,7 +38,8 @@ import {
 } from 'calendar-utils';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { Platform } from '@ionic/angular';
+import { ModalController, Platform } from '@ionic/angular';
+import { BookingModalPage } from './booking-modal/booking-modal.page';
 const colors: Record < string, EventColor > = {
   red: {
     primary: '#ad2121',
@@ -66,6 +67,18 @@ const colors: Record < string, EventColor > = {
   // styleUrls: ['./public-calendar.component.css'],
   styles: [
     `
+    .btn-primary {
+      background: #7e6130;
+      font-weight: bold;
+      color:#adefd1;
+      margin:8px !important;
+    }
+    .btn-outline-secondary {
+      background: #7e6130;
+      font-weight: bold;
+      color:#adefd1;
+    }
+  
     .scroll {
       overflow: auto;
     }
@@ -87,7 +100,7 @@ const colors: Record < string, EventColor > = {
     .cal-month-view .cal-event-title {
     cursor: pointer;
     font-weight: bold;
-
+  
 }
       .my-custom-class span {
         color: #CFA240;
@@ -159,7 +172,13 @@ export class BookingCalendarPage implements OnInit {
   userLogin: any;
   showHeader: any;
 
-  constructor(private bookingService: BookingServiceService, private activateRoute: ActivatedRoute,private location: Location, private platform: Platform) {
+  constructor(
+    private bookingService: BookingServiceService,
+    private activateRoute: ActivatedRoute,
+    private location: Location, 
+    private platform: Platform,
+    private modalController: ModalController
+    ) {
     this.userLogin = JSON.parse(localStorage.getItem('user'))
     console.log(this.userLogin);
     
@@ -198,6 +217,7 @@ export class BookingCalendarPage implements OnInit {
       }
       this.viewDate = date;
     }
+    this.presentModal(date)
   }
 
   eventTimesChanged({
@@ -292,6 +312,22 @@ export class BookingCalendarPage implements OnInit {
       }
      
     })
+  }
+
+  async presentModal(date) {
+    console.log("form main" , date);
+    
+    const modal = await this.modalController.create({
+      component: BookingModalPage,
+      breakpoints: [0, 0.3, 0.5, 0.8, 1],
+      initialBreakpoint: 0.9,
+      componentProps: {
+        date: date
+      }
+    });
+    modal.onDidDismiss().then(() => {
+    })
+    await modal.present();
   }
 
 }

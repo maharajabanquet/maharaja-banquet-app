@@ -9,27 +9,29 @@
   </ion-toolbar>
 </ion-header>
 
-<ng-container *ngIf="isready">
+<div *ngIf="isready" style="background: white;">
+  <p  style="text-align: center;"><ion-chip style=" --background: #00213f;--color: #adefd1;">Tap On Date To Book Your Events</ion-chip></p>
   <ng-container style="overflow: auto;">
-    <br><br><div class="row text-center">
+    <br><br><div class="row text-center" >
       <div class="col-md-4">
         <div class="btn-group">
           <div
             class="btn btn-primary"
+            
             mwlCalendarPreviousView
             [view]="view"
             [(viewDate)]="viewDate"
             (viewDateChange)="closeOpenMonthViewDay()"
           >
-            Previous
+            Previous Month
           </div>
-          <div
+          <!-- <div
             class="btn btn-outline-secondary"
             mwlCalendarToday
             [(viewDate)]="viewDate"
           >
             Today
-          </div>
+          </div> -->
           <div
             class="btn btn-primary"
             mwlCalendarNextView
@@ -37,14 +39,14 @@
             [(viewDate)]="viewDate"
             (viewDateChange)="closeOpenMonthViewDay()"
           >
-            Next
+            Next Month
           </div>
         </div>
       </div>
       <div class="col-md-4" style="text-align: center;font-size: 20px;">
-        <h3 style="font-weight: bold; color: red;">{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
+        <h3 style="font-weight: bold; color: #7e6130">{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
       </div>
-      <div class="col-md-4">
+      <!-- <div class="col-md-4" style="background: white;">
         <div class="btn-group">
           <div
             class="btn btn-primary"
@@ -68,12 +70,12 @@
             Day
           </div>
         </div>
-      </div>
+      </div> -->
       <br>
       <br>
     </div>
     <br />
-    <div class="scroll" [ngSwitch]="view">
+    <div class="scroll" [ngSwitch]="view" style="background: white;">
       <mwl-calendar-month-view
         *ngSwitchCase="CalendarView.Month"
         [viewDate]="viewDate"
@@ -111,5 +113,5 @@
     <br /><br /><br />
     
   </ng-container>
-</ng-container>
+</div>
 
