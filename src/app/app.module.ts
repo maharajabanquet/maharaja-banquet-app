@@ -9,12 +9,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FirebaseX } from '@awesome-cordova-plugins/firebase-x/ngx';
 import { FingerprintAIO } from '@ionic-native/fingerprint-aio/ngx';
-import { UniqueDeviceID } from '@ionic-native/unique-device-id/ngx';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 import { HttpClientModule } from  '@angular/common/http';
 import { FCM } from '@awesome-cordova-plugins/fcm/ngx';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { Tabs4PageModule } from './tabs4/tabs4.module';
+import { DjPageModule } from './dj/dj.module';
 
 
 @NgModule({
@@ -25,10 +25,11 @@ import { Tabs4PageModule } from './tabs4/tabs4.module';
     AppRoutingModule, 
     HttpClientModule,
     BrowserAnimationsModule,
-    Tabs4PageModule
+    Tabs4PageModule,
+    DjPageModule,
   
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, FirebaseX, FingerprintAIO,  UniqueDeviceID,FCM,
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, FirebaseX, FingerprintAIO,FCM,
     AndroidPermissions,SplashScreen],
   bootstrap: [AppComponent],
 })

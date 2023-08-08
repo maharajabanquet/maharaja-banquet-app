@@ -49,4 +49,35 @@ export class CommonService {
     const url = `${environment.host}/api/v1/service/service-list`;
     return this.apiService.get(url);
   }
+
+  getDjUser() {
+    const url = `${environment.host}/api/v1/app-user/get-dj-user`;
+    return this.apiService.get(url)
+  }
+
+  getSpecificUser(mobile: any) {
+    const url = `${environment.host}/api/v1/app-user/get-user-details?mobile=${mobile}`;
+    return this.apiService.get(url);
+  }
+
+  updateDjOrders(mobile, payload) {
+    const url = `${environment.host}/api/v1/app-user/update-dj-orders?mobile=${mobile}`;
+    return this.apiService.post(url, payload);
+  }
+
+  addPublicBooking(payload) {
+    const url = `${environment.host}/api/v1/public-booking/add-booking`;
+    return this.apiService.post(url, payload);
+  }
+  
+  generateInvoice(body: any) {
+    const URL = `${environment.host}/api/v1/invoice/generate_invoice`;
+    return this.apiService.postPdf(URL, body);
+  }
+
+  preview() {
+    const URL = `${environment.host}/api/v1/invoice/preview-pdf`;
+    return this.apiService.get(URL);
+  }
+
 }

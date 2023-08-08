@@ -10,12 +10,13 @@ import { DomSanitizer, SafeHtml, SafeStyle, SafeScript, SafeUrl, SafeResourceUrl
   templateUrl: './media.page.html',
   styleUrls: ['./media.page.scss'],
 })
-export class MediaPage implements OnInit {
+export class MediaPage implements OnInit, ViewWillEnter {
   type= 'photos'
   mediaList: any = [];
   innerWidth: any;
   yotubeVidId: any;
   serviceList: any = [];
+  userLogin: any;
   constructor(
     private router: Router,
     private commonService: CommonService,
@@ -24,13 +25,14 @@ export class MediaPage implements OnInit {
 
   ) {
     this.innerWidth = window.innerWidth;
+    this.userLogin = JSON.parse(localStorage.getItem('user'))
     this.commonService.getAllMedia('photos').subscribe((media: any) => {
       console.log('here');
       
       this.mediaList = media;
       for(let index=0; index < this.mediaList.length; index++) {
         if(this.mediaList[index].type === 'videos') {
-          this.yotubeVidId = this._sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + this.mediaList[index].mediaSource)
+          this.yotubeVidId = this._sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + this.mediaList[index].mediaSource + '?rel=0')
           console.log(this.yotubeVidId);
           
         }
@@ -74,5 +76,7 @@ export class MediaPage implements OnInit {
   showCal() {
     this.router.navigate(['/booking-calendar', false])
   }
- 
+  ionViewWillEnter(): void {
+    this.userLogin = JSON.parse(localStorage.getItem('user'))
+  }
 }

@@ -19,7 +19,7 @@ const routes: Routes = [
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
   {
-    path: 'category',
+    path: 'category/:id',
     loadChildren: () => import('./category-page/category-page.module').then( m => m.CategoryPagePageModule)
   },
   {
@@ -33,7 +33,13 @@ const routes: Routes = [
   {
     path: 'media',
     loadChildren: () => import('./media/media.module').then( m => m.MediaPageModule)
+  },
+
+  {
+    path: 'dj',
+    loadChildren: () => import('./dj/dj.module').then( m => m.DjPageModule)
   }
+
 
 
 

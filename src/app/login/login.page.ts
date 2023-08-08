@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { CommonService } from '../common.service';
 import { CommonServiceService } from '../common-service.service';
 import { FCM } from '@awesome-cordova-plugins/fcm/ngx';
-import { UniqueDeviceID } from '@ionic-native/unique-device-id/ngx';
 import { FirebaseX } from '@awesome-cordova-plugins/firebase-x/ngx';
 
 @Component({
@@ -24,7 +23,6 @@ export class LoginPage implements OnInit {
 		private loadingController: LoadingController,
     private commonService: CommonService,
 	private commonServices: CommonServiceService,
-	private uniqueDeviceID: UniqueDeviceID,
     private fcm: FCM,
 	private firebaseX: FirebaseX, 
 	) {}
@@ -37,16 +35,7 @@ export class LoginPage implements OnInit {
 		localStorage.clear();
 	}
 
-	getUniqueDeviceID() {
-		this.uniqueDeviceID.get()
-		  .then((uuid: any) => {
-			console.log(uuid);
-			this.uniqueId = uuid;
-		  })
-		  .catch((error: any) => {
-			console.log(error);
-		  });
-	  }
+	
 	async login() {
 		const loading = await this.loadingController.create();
 		await loading.present();
@@ -72,7 +61,10 @@ export class LoginPage implements OnInit {
 				if(user && user.isAdmin) {
 					this.router.navigateByUrl('/tabs', { replaceUrl: true });
 
-				} else {
+				} else if(user && user.isDj) {
+					this.router.navigateByUrl('/dj',{ replaceUrl: true})					
+				}
+				else {
 					this.router.navigateByUrl('/home', { replaceUrl: true });
 				}
 			},

@@ -1,0 +1,71 @@
+<ion-header class="header">
+  <ion-toolbar color="dark">
+    <ion-title class="title">DJ {{userDetails.userName}} </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-segment color="dark" [(ngModel)]="segmentValue">
+    <ion-segment-button value="pending">
+      <ion-label>Pending</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="accepted">
+      <ion-label>Accepted</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="rejected">
+      <ion-label>Rejected</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <ng-container [ngSwitch]="segmentValue">
+    <ng-container *ngSwitchCase="'pending'">
+    <ng-container *ngFor="let order of orders, let i = index" >
+      <ion-card *ngIf="order && order.status === 'Pending'">
+        <ion-card-header>
+          <ion-card-title class="card-title">Booking Date: {{order.bookingDate}}</ion-card-title>
+          <ion-card-subtitle>DJ TYPE: {{order.djType}}</ion-card-subtitle>
+        </ion-card-header>
+      
+        <ion-card-content>
+         {{order.notifcation}}
+        </ion-card-content>
+        <ion-button fill="clear" (click)="presentAlertPrompt(order, i)" class="accept-btn"><ion-icon name="checkmark-done-outline"></ion-icon> Accept</ion-button>
+        <ion-button fill="clear" (click)="handleReject(order, i)" class="reject-btn"><ion-icon name="close-outline"></ion-icon> Reject</ion-button>
+      </ion-card>
+     
+    </ng-container>
+  </ng-container>
+  <ng-container *ngSwitchCase="'accepted'">
+    <ng-container *ngFor="let order of orders, let i = index" >
+    <ion-card *ngIf="order && order.status === 'Accepted'">
+      <ion-card-header>
+        <ion-card-title class="card-title">Booking Date: {{order.bookingDate}}</ion-card-title>
+        <ion-card-subtitle  class="card-subtitle">DJ TYPE: {{order.djType}}</ion-card-subtitle>
+        <ion-card-subtitle style="color:#7e6130;font-weight: bold;">Payment: ₹{{order.quotes}}</ion-card-subtitle>
+
+      </ion-card-header>
+    
+      <ion-card-content class="notification">
+       {{order.notifcation}}
+      </ion-card-content>
+      <ion-button fill="clear" class="accept-btn"> <ion-icon name="checkmark-done-outline"></ion-icon> Accepted</ion-button>
+    </ion-card>
+  </ng-container>
+  </ng-container>
+  <ng-container *ngSwitchCase="'rejected'">
+    <ng-container *ngFor="let order of orders, let i = index" >
+    <ion-card *ngIf="order && order.status === 'Rejected'">
+      <ion-card-header>
+        <ion-card-title class="card-title">Booking Date: 07/12/2023</ion-card-title>
+        <ion-card-subtitle>DJ TYPE</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content style="color:red;">
+        You have rejected this order.
+      </ion-card-content>
+      <ion-button fill="clear" class="reject-btn"><ion-icon name="close-outline"></ion-icon> Rejected</ion-button>
+    </ion-card>
+  </ng-container>
+  </ng-container>
+</ng-container>
+
+</ion-content>

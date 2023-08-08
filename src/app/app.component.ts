@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { FirebaseX } from '@awesome-cordova-plugins/firebase-x/ngx';
 import { Platform } from '@ionic/angular';
 import { FingerprintAIO } from '@ionic-native/fingerprint-aio/ngx';
-import { UniqueDeviceID } from '@ionic-native/unique-device-id/ngx';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 import { CommonServiceService } from './common-service.service';
 import { FCM } from '@awesome-cordova-plugins/fcm/ngx';
@@ -27,7 +26,6 @@ export class AppComponent {
     private firebaseX: FirebaseX, 
     private plt: Platform, 
     private faio: FingerprintAIO,
-    private uniqueDeviceID: UniqueDeviceID,
     private commonService: CommonServiceService,
     private fcm: FCM,
     private router: Router,
@@ -44,20 +42,17 @@ export class AppComponent {
         this.router.navigate(['/media'])
 
       }
-      if(this.userLogin && this.userLogin.isAdmin === false) {
-        console.log('check', this.userLogin.isAdmin);
-        
+      if(this.userLogin && this.userLogin.isAdmin === false && this.userLogin.isDj) {
+        this.router.navigate(['/dj'])
+      } else if(this.userLogin && this.userLogin.isAdmin === false) {
         this.router.navigate(['/home'])
-      } else {
-        this.router.navigate(['/tabs'])
       }
+       else if(this.userLogin && this.userLogin.isAdmin === true){
+        this.router.navigate(['/tabs'])
+      } 
 
      
-    // this.plt.ready().then((readySource) => {
-    //   this.getUniqueDeviceID();
-    //   this.showFingerprintAuthDlg();
-
-    // })
+  
     console.log('USER :::>', this.userLogin);
 
     if(this.userLogin === null) {
@@ -73,13 +68,22 @@ export class AppComponent {
     this.isAdmin = true;
 
     this.fcm.onNotification().subscribe(data => {
+      console.log(data);
+      
       if(data.wasTapped){
         console.log("Received in background");
-        this.router.navigate(['/tabs'])
+        if(data.action === 'dj') {
+          this.router.navigate(['/dj'])
+        } else {
+          this.router.navigate(['/tabs'])
+        }
 
       } else {
+        if(data.action === 'dj') {
+          this.router.navigate(['/dj'])
+        }
         console.log("Received in foreground");
-      };
+      };  
     });
     
   }
@@ -129,16 +133,7 @@ export class AppComponent {
       // Platform now ready, execute any required native code
   }
 
-  getUniqueDeviceID() {
-    this.uniqueDeviceID.get()
-      .then((uuid: any) => {
-        console.log(uuid);
-        this.uniqueId = uuid;
-      })
-      .catch((error: any) => {
-        console.log(error);
-      });
-  }
+ 
 
   
 

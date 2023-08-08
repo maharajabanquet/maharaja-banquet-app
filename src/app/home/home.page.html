@@ -26,7 +26,10 @@
       </ion-card-header>
       <ion-card-content>
         <p ><ion-icon style="font-size: 30px;" name="notifications-circle-outline"></ion-icon><label style="color:#fd501c;font-weight: bold;">{{userLogin.notification}}</label></p>
+        <br>
+        <ion-icon name="cloud-download"></ion-icon>&nbsp;<ion-label style="color:blue;font-weight: bold;" (click)="givePrint()">Download Invoice</ion-label> 
       </ion-card-content>
+
       <ion-footer>
         <ion-row>
           <ion-col center text-center>
@@ -62,3 +65,9 @@
       </ion-card-header>
     </ion-card>
   </ion-content>
+  <ion-fab (click)="openService()" slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button  color="dark" >
+      <ion-icon name="newspaper-outline"></ion-icon>
+    </ion-fab-button>
+   
+  </ion-fab>

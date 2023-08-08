@@ -3,12 +3,14 @@
     <ion-title text-left>
       <img alt="logo" height="40" float-left src="../../assets/images/icon.png"> Maharaja Banquet
     </ion-title>
-    <ion-buttons slot="end" (click)="exit()">
-      <ion-button>Close </ion-button>
-    </ion-buttons>
-    <ion-buttons slot="end" (click)="login()">
-      <ion-button>Login </ion-button>
-    </ion-buttons>
+    <ng-container *ngIf="!userLogin">
+      <ion-buttons slot="end" (click)="exit()">
+        <ion-button>Close </ion-button>
+      </ion-buttons>
+      <ion-buttons  slot="end" (click)="login()">
+        <ion-button>Login </ion-button>
+      </ion-buttons>
+    </ng-container>
   </ion-toolbar>
 </ion-header>
 
@@ -55,7 +57,7 @@
     </ng-container>
     <ion-fab slot="fixed" vertical="bottom" horizontal="end">
       <ion-fab-button (click)="showCal()" color="secondary" >
-        <ion-icon name="calendar-number-outline"></ion-icon>
+        Book
       </ion-fab-button>
      
     </ion-fab>
